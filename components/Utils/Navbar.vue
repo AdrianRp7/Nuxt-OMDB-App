@@ -1,7 +1,7 @@
 <template>
     <nav class="background-primary py-3 box-shadow-navbar">
-        <div class="container mx-auto">
-            <div class="flex px-4 md:hidden justify-between items-center">
+        <div class="main-container">
+            <div class="flex md:hidden justify-between items-center">
                 <nuxt-link to="/" class="text-primary hover:text-accent hover-transition text-2xl cursor-pointer">NuxtOMDb APP</nuxt-link>
                 <div class="hamburguer-icon flex flex-col cursor-pointer" @click="showMobile = !showMobile">
                     <span class="background-secondary h-1 w-8 mb-2 hover-transition"></span>
@@ -23,7 +23,7 @@
 
 
 <script lang="ts" setup>
-    const showMobile = ref(true);
+    const showMobile = ref(false);
 </script>
 
 <style scoped>

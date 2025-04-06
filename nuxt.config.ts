@@ -7,5 +7,5 @@ export default defineNuxtConfig({
   runtimeConfig: {
     api_key: "",
     api_base_url: "",
-  }
+  },
 })

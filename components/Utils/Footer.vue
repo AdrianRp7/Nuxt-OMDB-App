@@ -1,6 +1,6 @@
 <template>
-    <footer class="background-primary p-3 box-shadow-footer">
-        <div class="container mx-auto">
+    <footer class="background-primary p-3 box-shadow-footer mt-5">
+        <div class="main-container">
             <p class="text-sm text-primary text-center">© 2025 NuxtOMDb - All Rights Reserved.
             </p>
         </div>
