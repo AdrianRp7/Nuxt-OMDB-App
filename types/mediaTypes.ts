@@ -1,0 +1,1 @@
+export type mediaTypes = "movie" | 'series' | 'episode'

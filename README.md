@@ -36,12 +36,13 @@ npm run preview
 - Utils:
     - Footer:
     - Navbar:
-- MoviesSeries:
+- Media:
     - Card:
     - Description:
     - Featured: 
+    - Search
 - Contact:
-    - Form.vue
+    - Form
 ## Pages
 - index: 
 - contact:
