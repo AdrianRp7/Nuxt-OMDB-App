@@ -36,6 +36,7 @@ npm run preview
 - Utils:
     - Footer:
     - Navbar:
+    - Loader:
 - Media:
     - Card:
     - Description:

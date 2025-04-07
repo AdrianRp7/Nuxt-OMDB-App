@@ -4,8 +4,8 @@
             <input v-model="searchTerm" type="text" class="background-secondary w-52 mx-auto rounded-md text-primary py-1 px-4 mt-5 focus-visible:outline-none shadow-none">
             <p v-if="data?.Error" class="text-sm text-center text-error mt-2">{{data.Error}}</p>
         </div>
-        <div v-if="medias.length !== 0" class="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div v-for="media in medias" :key="media.imdbID" class="justify-self-stretch" >
+        <div v-if="medias.length !== 0" class="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
+            <div v-for="media in medias" :key="media.imdbID" class="justify-self-stretch place-items-center h-full" >
                 <MediaCard :media="media" />
             </div>
         </div>
@@ -44,7 +44,7 @@
     /*** Fetch Api ***/
 
     const urlSearch = computed (() => {
-        return `api/search/?searchTerm=${searchTermDebounced.value}&type=${type}&page=${page.value}`
+        return `api/search/?searchTerm=${searchTermDebounced.value.trim()}&type=${type}&page=${page.value}`
     })
 
     const medias = ref<mediaItem[]>([]);
