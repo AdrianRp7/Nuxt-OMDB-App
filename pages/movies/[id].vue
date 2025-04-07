@@ -1,5 +1,5 @@
 <template>
-    <MediaDescription :id="id" />
+    <MediaDescription :id="id"/>
 </template>
 
 <script lang="ts" setup>

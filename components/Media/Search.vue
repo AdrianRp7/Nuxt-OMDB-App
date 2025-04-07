@@ -23,7 +23,7 @@
     import type {responseSearch} from "~/interfaces/responseSearch"
     import type {responseError} from "~/interfaces/responseError"
     import type { mediaTypes } from "~/types/mediaTypes";
-    import { refDebounced } from '@vueuse/core'
+    // import { refDebounced } from '@vueuse/core'
 
     const {type} = defineProps<{type: mediaTypes}>();
     const linkType = computed(()=> {
