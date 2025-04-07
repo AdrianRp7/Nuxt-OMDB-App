@@ -20,7 +20,8 @@
 </template>
 
 <script lang="ts" setup>
-    import type {responseSearch, responseSearchError} from "~/interfaces/responseSearch"
+    import type {responseSearch} from "~/interfaces/responseSearch"
+    import type {responseError} from "~/interfaces/responseError"
     import type { mediaTypes } from "~/types/mediaTypes";
     import { refDebounced } from '@vueuse/core'
 
@@ -50,7 +51,7 @@
     const medias = ref<mediaItem[]>([]);
     
 
-    const { data } = await useFetch<responseSearch | responseSearchError | null >(urlSearch, {
+    const { data } = await useFetch<responseSearch | responseError | null >(urlSearch, {
         immediate: false,
     });
 

@@ -41,7 +41,7 @@ import type { mediaTypes } from "~/types/mediaTypes"
 //     "Response": "True"
 //   }
 
-export interface mediaDescription {
+export interface responseDescription {
     Title: string
     Year: string
     Rated: string
