@@ -5,9 +5,9 @@
             <p v-if="data?.Error" class="text-sm text-center text-error mt-2">{{data.Error}}</p>
         </div>
         <div v-if="medias.length !== 0" class="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
-            <div v-for="media in medias" :key="media.imdbID" class="justify-self-stretch place-items-center h-full" >
-                <MediaCard :media="media" />
-            </div>
+            <nuxt-link v-for="media in medias" :key="media.imdbID" :to="`/${linkType}/${media.imdbID}`" class="justify-self-stretch place-items-center h-full" >
+                <MediaCard :media="media"/>
+            </nuxt-link>
         </div>
 
         <div v-if="medias.length !== 0 && !loading" class="mx-auto mt-5">
@@ -26,6 +26,9 @@
     import { refDebounced } from '@vueuse/core'
 
     const {type} = defineProps<{type: mediaTypes}>();
+    const linkType = computed(()=> {
+        return type === 'movie' ? 'movies' : 'series'
+    })
 
     const searchTerm = ref("");
     const searchTermDebounced = refDebounced(searchTerm, 500);

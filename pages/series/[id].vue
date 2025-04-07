@@ -1,3 +1,8 @@
 <template>
-    <h1>Serie Description</h1>
+    <MediaDescription :id="id" />
 </template>
+
+<script lang="ts" setup>
+    const route = useRoute();
+    const id = route.params.id;
+</script>

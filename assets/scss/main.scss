@@ -53,4 +53,14 @@
 
         }
     }
+
+    .\[grid-cols-\[max-content_1fr_1fr\]\] {
+        grid-template-columns: max-content 1fr 1fr;
+    }
+    .\[grid-cols-\[max-content_1fr\]\] {
+        grid-template-columns: max-content 1fr;
+    }
+    .\[grid-cols-\[max-content_1fr_max-content_1fr\]\]{
+        grid-template-columns: max-content 1fr max-content 1fr;
+    }
 }
