@@ -1,9 +1,14 @@
 <template>
-    <img :src="errorLoad ? '/img/image-no-available.jpg' : url" @error="errorLoad">
+    <img :src="errorLoad ? '/img/image-no-available.jpg' : url" :alt="alt" @error="errorLoad">
 </template>
 
 <script lang="ts" setup>
-    const {url} = defineProps<{url: string}>();
+    interface Props {
+        url:string,
+        alt?:string,
+    }
+
+    const {url} = defineProps<Props>();
 
     const errorLoad = ref(false)
 </script>
