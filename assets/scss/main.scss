@@ -120,10 +120,6 @@
         &::-webkit-scrollbar-thumb:hover {
             @apply background-primary;
         }
-
-        /** Firefox **/
-        scrollbar-width: thin;
-        scrollbar-color: #999 #f4f4f4;
     }
 
     .\[grid-cols-\[max-content_1fr_1fr\]\] {
