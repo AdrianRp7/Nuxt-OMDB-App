@@ -16,5 +16,5 @@
 
 <script lang="ts" setup>
     const route = useRoute();
-    const id = route.params.id;
+    const id = ref<string>(route.params.id as string);
 </script>
