@@ -31,8 +31,8 @@
             <p class="text-error text-sm mt-1">{{ errors.message }}</p>
         </div>
         <div class="control">
-            <div class="checkbox flex flex-row gap-2">
-                <input id="accept" v-model.lazy="form.accepted" name="accept" type="checkbox" @blur="touched.accepted = true">
+            <div class="flex flex-row gap-2">
+                <input id="accept" v-model.lazy="form.accepted" name="accept" type="checkbox" class="checkbox" @blur="touched.accepted = true">
                 <label for="accept" class="label cursor-pointer">I accept the terms and conditions of use</label>
             </div>
             <p class="text-error text-sm mt-1">{{ errors.accepted }}</p>

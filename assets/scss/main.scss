@@ -70,10 +70,6 @@
             -moz-appearance: none;
         }
 
-        &:focus-within::after{
-            content: "a";
-        }
-
         &::after {
             @apply text-primary text-sm;
             content: "▼";
@@ -85,6 +81,25 @@
 
     .control {
         @apply flex flex-col gap-1;
+    }
+
+
+
+    .checkbox {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        @apply background-primary size-5 rounded-md m-0 cursor-pointer relative transition-all;
+        vertical-align: middle;
+
+
+        &:checked::after {
+            content: "✓";
+            @apply text-gray-900 dark:text-white absolute;
+            font-size: 16px;
+            top: -2px;
+            left: 4px;
+        }
     }
 
     .\[grid-cols-\[max-content_1fr_1fr\]\] {
