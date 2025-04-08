@@ -1,7 +1,10 @@
 <template>
     <Suspense>
         <template #default>
-            <MediaDescription :id="id" />
+            <div class="flex flex-col justify-center h-full">
+                <nuxt-link to="/series" class="mt-5 text-xl text-primary font-bold cursor-pointer">&lt; Go Back</nuxt-link>
+                <MediaDescription :id="id" />
+            </div>
         </template>
         <template #fallback>
             <div class="grid place-items-center h-full">

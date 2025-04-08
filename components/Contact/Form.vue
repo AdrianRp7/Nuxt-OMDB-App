@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-3 justify-center w-96">
+    <div class="flex flex-col gap-3 justify-center w-full md:w-96">
         <div class="control">
             <label for="title" class="label">Title:</label>
             <div class="select w-full cursor-pointer">
