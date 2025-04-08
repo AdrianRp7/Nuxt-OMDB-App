@@ -1,16 +1,16 @@
 <template>
     <div class="grid place-items-center h-full">
-        <div  v-if="!data || data.Error" class="grid place-items-center h-full">
+        <div  v-if="!mediaDescription || mediaDescriptionError?.Error" class="grid place-items-center h-full">
             <h1 class="text-primary text-xl font-bold text-center">The movie information is not available, please try later</h1>
         </div>
         <div v-else class="grid grid-cols-1 md:grid-cols-[max-content_1fr_1fr] gap-10">
             <div class="hidden md:block w-60">
-                <UtilsImgWithDefault :url="data?.Poster" :alt="`Principal photo of ${data?.Title}`" class="aspect-[2/3] object-fill" />
+                <UtilsImgWithDefault :url="mediaDescription?.Poster" :alt="`Principal photo of ${mediaDescription?.Title}`" class="aspect-[2/3] object-fill" />
             </div>
             <section class="md:col-span-2">
-                <h1 class="text-primary text-2xl font-bold mb-4">{{ data?.Title }}</h1>
+                <h1 class="text-primary text-2xl font-bold mb-4">{{ mediaDescription?.Title }}</h1>
                 <p class="text-primary text-md">
-                    {{ data?.Plot }}
+                    {{ mediaDescription?.Plot }}
                 </p>
                 <div class="media-description-information grid-cols-[max-content_1fr] md:grid-cols-[max-content_1fr_max-content_1fr] gap-2">
                     <span v-if="releasedDate">Released date:</span>
@@ -52,18 +52,26 @@
 
     const {data} = await useFetch<responseDescription | responseError | null>(urlGetDescription);
 
+    //Validate types
+    const mediaDescription = computed(() =>
+        data.value && "Title" in data.value ? data.value as responseDescription : undefined
+    )
+    const mediaDescriptionError = computed(() =>
+        data.value && "Error" in data.value ? data.value as responseError : undefined
+    )
+    
 
     const lastMediaLook = useStorage<responseDescription[]>('last-media-look', []);
     const updateLocalStorage = () => { 
-        if(data.value) {
-            const isRecientlyViewed = lastMediaLook.value.findIndex(mediaElement => mediaElement.imdbID === data.value.imdbID)
+        if(mediaDescription.value) {
+            const isRecientlyViewed = lastMediaLook.value.findIndex(mediaElement => mediaElement.imdbID === mediaDescription.value?.imdbID)
             
             //Verify if the element is in the localstorage and adds 1 view more
-            if(isRecientlyViewed !== -1)
-                lastMediaLook.value[isRecientlyViewed].views++
+            if(isRecientlyViewed !== -1 && lastMediaLook.value && lastMediaLook.value[isRecientlyViewed] && lastMediaLook.value[isRecientlyViewed].views)
+                lastMediaLook.value[isRecientlyViewed].views++;
             else {
-                data.value.views = 1
-                lastMediaLook.value.unshift(data.value)
+                mediaDescription.value.views = 1
+                lastMediaLook.value.unshift(mediaDescription.value)
             }
                 
             //Removes the oldest element in the array 
@@ -77,33 +85,33 @@
     onActivated(()=> {
         updateLocalStorage();
     })
-    watch(()=>data.value, () =>{
-        if(import.meta.client && data.value)
+    watch(()=>mediaDescription.value, () =>{
+        if(import.meta.client && mediaDescription.value)
             updateLocalStorage()
     })
 
     const releasedDate = computed(() => {
-        return (data && data.value?.Released !== 'N/A') ? new Date(data.value.Released).toLocaleDateString("en") : null; 
+        return (mediaDescription.value && mediaDescription.value?.Released !== 'N/A') ? new Date(mediaDescription.value.Released).toLocaleDateString("en") : null; 
     })
 
     const genres = computed(() => {
-        return (data && data.value?.Genre !== 'N/A') ? data.value.Genre.split(',') : null; 
+        return (mediaDescription.value  && mediaDescription.value?.Genre !== 'N/A') ? mediaDescription.value?.Genre.split(',') : null; 
     })
 
     const language = computed(() => {
-        return (data && data.value?.Language !== 'N/A') ? data.value.Language : null; 
+        return (mediaDescription.value  && mediaDescription.value?.Language !== 'N/A') ? mediaDescription.value?.Language : null; 
     })
 
     const actors = computed(() => {
-        return (data && data.value?.Actors !== 'N/A') ? data.value.Actors : null; 
+        return (mediaDescription.value  && mediaDescription.value?.Actors !== 'N/A') ? mediaDescription.value?.Actors : null; 
     })
 
     const rating = computed(() => {
-        return (data && data.value?.imdbRating !== 'N/A') ? data.value.imdbRating : null; 
+        return (mediaDescription.value  && mediaDescription.value?.imdbRating !== 'N/A') ? mediaDescription.value?.imdbRating : null; 
     })
 
     const writers = computed(() => {
-        return (data && data.value?.Writer !== 'N/A') ? data.value.Writer : null; 
+        return (mediaDescription.value  && mediaDescription.value?.Writer !== 'N/A') ? mediaDescription.value?.Writer : null; 
     })
 
     

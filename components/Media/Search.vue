@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-center">
         <div class="control text-center">
             <input v-model="searchTerm" type="text" class="input mx-auto w-52 mt-5 ">
-            <p v-if="data?.Error" class="text-sm text-center text-error mt-2">{{data.Error}}</p>
+            <p v-if="mediaSearchError" class="text-sm text-center text-error mt-2">{{data.Error}}</p>
         </div>
         <div v-if="medias.length !== 0" class="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
             <nuxt-link v-for="media in medias" :key="media.imdbID" :to="`/${linkType}/${media.imdbID}`" class="justify-self-stretch place-items-center h-full" >
@@ -28,6 +28,7 @@
     // import { refDebounced } from '@vueuse/core'
 
     const {type} = defineProps<{type: mediaTypes}>();
+
     const linkType = computed(()=> {
         return type === 'movie' ? 'movies' : 'series'
     })
@@ -40,8 +41,10 @@
     const loading = ref(false)
 
     const totalPages = computed(() => {
+        
         return data?.value?.totalResults ? Math.ceil(data?.value?.totalResults/10) : 0
     })
+    
 
     const nextPage = () => {
         page.value++
@@ -60,13 +63,20 @@
         immediate: false,
     });
 
+    const mediaSearch = computed(() =>
+        data.value && "Search" in data.value ? data.value as responseSearch : undefined
+    )
+    const mediaSearchError = computed(() =>
+        data.value && "Error" in data.value ? data.value as responseError : undefined
+    )
+
     watch(searchTermDebounced, ()=> {
         medias.value = []
         loading.value = true
     })
 
-    watch(() => data.value, ()=> {
-        medias.value = data?.value?.Search ? medias.value.concat(data?.value?.Search) : medias.value
+    watch(mediaSearch, ()=> {
+        medias.value = mediaSearch.value?.Search ? medias.value.concat(mediaSearch?.value?.Search) : medias.value
         loading.value = false
     })
 

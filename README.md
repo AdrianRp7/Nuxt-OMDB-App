@@ -68,4 +68,4 @@ npm run preview
 - server/api/search: It returns the results from the API based on a search term and type.
 
 ## Local Storage Functionality
-The local storage functionality is located in the Media/description.vue component. This component saves the most recently viewed items in localStorage under the key 'last-media-look', storing up to 10 items. If there are more than 10, the oldest item is removed. If an item is visited more than once, a viewed field inside the object in localStorage is updated and increments the visit count by 1.
+The local storage functionality is located in the Media/description.vue component. This component saves the most recently viewed items in localStorage under the key 'last-media-look', storing up to 10 items. If there are more than 10, the oldest item is removed. If an item is visited more than once, a views field inside the object in localStorage is updated and increments the visit count by 1.
