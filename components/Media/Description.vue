@@ -50,10 +50,7 @@
         return `/api/getByID?id=${id.trim()}`
     })
 
-    const {data} = await useFetch<responseDescription | responseError | null>(urlGetDescription, {
-        server: false,
-        cache: 'no-store'
-    });
+    const {data} = await useFetch<responseDescription | responseError | null>(urlGetDescription);
 
 
     const lastMediaLook = useStorage<responseDescription[]>('last-media-look', []);
