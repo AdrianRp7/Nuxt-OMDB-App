@@ -2,10 +2,12 @@
     <div class="flex flex-col gap-3 justify-center w-96">
         <div class="control">
             <label for="saludation" class="label">Saludation:</label>
-            <select id="salutation" v-model.lazy="form.saludation" name="salutation" class="input" @blur="touched.saludation = true" @input="touched.saludation = false">
-                <option value="mr">Mr.</option>
-                <option value="ms">Ms.</option>
-            </select>
+            <div class="select w-full cursor-pointer">
+                <select id="salutation" v-model.lazy="form.saludation" name="salutation" class="input w-full" @blur="touched.saludation = true" @input="touched.saludation = false">
+                    <option value="mr">Mr.</option>
+                    <option value="ms">Ms.</option>
+                </select>
+            </div>
             <p class="text-error text-sm mt-1">{{ errors.saludation }}</p>
         </div>
         <div class="control">
