@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center">
         <div class="control text-center">
-            <input v-model="searchTerm" type="text" class="background-primary w-52 mx-auto rounded-md text-primary py-1 px-4 mt-5 focus-visible:outline-none shadow-none">
+            <input v-model="searchTerm" type="text" class="input mx-auto w-52 mt-5 ">
             <p v-if="data?.Error" class="text-sm text-center text-error mt-2">{{data.Error}}</p>
         </div>
         <div v-if="medias.length !== 0" class="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">

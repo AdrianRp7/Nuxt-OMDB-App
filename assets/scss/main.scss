@@ -54,6 +54,18 @@
         }
     }
 
+    .input {
+        @apply background-primary rounded-md text-primary py-1 px-4 focus-visible:outline-none shadow-none
+    }
+
+    .label {
+        @apply text-sm text-secondary;
+    }
+
+    .control {
+        @apply flex flex-col gap-1;
+    }
+
     .\[grid-cols-\[max-content_1fr_1fr\]\] {
         grid-template-columns: max-content 1fr 1fr;
     }
