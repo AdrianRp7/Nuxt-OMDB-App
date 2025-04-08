@@ -48,7 +48,7 @@
     /*** Fetch Api ***/
 
     const urlSearch = computed (() => {
-        return `api/search/?searchTerm=${searchTermDebounced.value.trim()}&type=${type}&page=${page.value}`
+        return `/api/search/?searchTerm=${searchTermDebounced.value.trim()}&type=${type}&page=${page.value}`
     })
 
     const medias = ref<mediaItem[]>([]);
