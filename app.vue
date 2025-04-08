@@ -1,5 +1,5 @@
 <template>
   <NuxtLayout>
-    <NuxtPage keepalive include="index" />
+    <NuxtPage keepalive />
   </NuxtLayout>
 </template>

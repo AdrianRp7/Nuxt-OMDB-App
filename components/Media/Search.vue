@@ -41,8 +41,10 @@
     const loading = ref(false)
 
     const totalPages = computed(() => {
-        
-        return data?.value?.totalResults ? Math.ceil(data?.value?.totalResults/10) : 0
+        if(mediaSearch.value && mediaSearch.value?.totalResults)
+            return Math.ceil(parseInt(mediaSearch.value?.totalResults) / 10)
+
+        return 0
     })
     
 

@@ -95,23 +95,23 @@
     })
 
     const genres = computed(() => {
-        return (mediaDescription.value  && mediaDescription.value?.Genre !== 'N/A') ? mediaDescription.value?.Genre.split(',') : null; 
+        return (mediaDescription.value && mediaDescription.value?.Genre !== 'N/A') ? mediaDescription.value?.Genre.split(',') : null; 
     })
 
     const language = computed(() => {
-        return (mediaDescription.value  && mediaDescription.value?.Language !== 'N/A') ? mediaDescription.value?.Language : null; 
+        return (mediaDescription.value && mediaDescription.value?.Language !== 'N/A') ? mediaDescription.value?.Language : null; 
     })
 
     const actors = computed(() => {
-        return (mediaDescription.value  && mediaDescription.value?.Actors !== 'N/A') ? mediaDescription.value?.Actors : null; 
+        return (mediaDescription.value && mediaDescription.value?.Actors !== 'N/A') ? mediaDescription.value?.Actors : null; 
     })
 
     const rating = computed(() => {
-        return (mediaDescription.value  && mediaDescription.value?.imdbRating !== 'N/A') ? mediaDescription.value?.imdbRating : null; 
+        return (mediaDescription.value && mediaDescription.value?.imdbRating !== 'N/A') ? mediaDescription.value?.imdbRating : null; 
     })
 
     const writers = computed(() => {
-        return (mediaDescription.value  && mediaDescription.value?.Writer !== 'N/A') ? mediaDescription.value?.Writer : null; 
+        return (mediaDescription.value && mediaDescription.value?.Writer !== 'N/A') ? mediaDescription.value?.Writer : null; 
     })
 
     
