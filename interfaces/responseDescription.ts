@@ -25,7 +25,8 @@ export interface responseDescription {
     BoxOffice: string
     Production: string
     Website: string
-    Response: string
+    Response: string,
+    views?: number
 }
 
 export interface Rating {

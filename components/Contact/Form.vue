@@ -1,14 +1,14 @@
 <template>
     <div class="flex flex-col gap-3 justify-center w-96">
         <div class="control">
-            <label for="saludation" class="label">Saludation:</label>
+            <label for="title" class="label">Title:</label>
             <div class="select w-full cursor-pointer">
-                <select id="salutation" v-model.lazy="form.saludation" name="salutation" class="input w-full" @blur="touched.saludation = true" @input="touched.saludation = false">
+                <select id="salutation" v-model.lazy="form.title" name="salutation" class="input w-full" @blur="touched.title = true" @input="touched.title = false">
                     <option value="mr">Mr.</option>
                     <option value="ms">Ms.</option>
                 </select>
             </div>
-            <p class="text-error text-sm mt-1">{{ errors.saludation }}</p>
+            <p class="text-error text-sm mt-1">{{ errors.title }}</p>
         </div>
         <div class="control">
             <label for="name" class="label">Name:</label>
@@ -52,7 +52,7 @@
 <script lang="ts" setup>
     const initialForm = {
         email: "",
-        saludation: "",
+        title: "",
         name: "",
         subject: "",
         message: "",
@@ -61,7 +61,7 @@
 
     const initialTouched = {
         email: false,
-        saludation: false,
+        title: false,
         name: false,
         subject: false,
         message: false,
@@ -79,9 +79,9 @@
             if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(form.email)) return "The email is not valid"
             return ""
         }),
-        saludation: computed(() => {
-            if (!touched.saludation) return ""
-            if (form.saludation === "") return "Saludation is required."
+        title: computed(() => {
+            if (!touched.title) return ""
+            if (form.title === "") return "title is required."
             return ""
         }),
         name: computed(() => {
@@ -119,17 +119,17 @@
     const loading = ref(false);
     const resultSubmit = ref("");
 
-    const validateInput = (text): boolean => {
+    const validateInput = (text:string): boolean => {
         return /^[A-ZÁÉÍÓÚÑa-záéíóúñ' -]+$/.test(text)
     }
 
-    const sanitizeHtml = (text): boolean => {
+    const sanitizeHtml = (text:string): boolean => {
         return /(<.*?>|script|on\w+\s*=|javascript:|data:)/gi.test(text)
     }
 
     const removedTouched = () => {
         touched.email = true;
-        touched.saludation = true;
+        touched.title = true;
         touched.name = true;
         touched.subject = true;
         touched.message = true;
@@ -137,7 +137,7 @@
     }
 
     const validatedForm = (): boolean => {
-        return errors.email === "" && errors.saludation === "" &&
+        return errors.email === "" && errors.title === "" &&
         errors.name === "" && errors.subject === "" &&
         errors.message === "" && errors.accepted === "";
     }
