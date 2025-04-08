@@ -2,7 +2,7 @@
     <div class="flex flex-col justify-center">
         <div class="control text-center">
             <input v-model="searchTerm" type="text" class="input mx-auto w-52 mt-5 ">
-            <p v-if="mediaSearchError" class="text-sm text-center text-error mt-2">{{data.Error}}</p>
+            <p v-if="mediaSearchError" class="text-sm text-center text-error mt-2">{{mediaSearchError.Error}}</p>
         </div>
         <div v-if="medias.length !== 0" class="mt-5 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
             <nuxt-link v-for="media in medias" :key="media.imdbID" :to="`/${linkType}/${media.imdbID}`" class="justify-self-stretch place-items-center h-full" >
@@ -61,16 +61,19 @@
     const medias = ref<mediaItem[]>([]);
     
 
-    const { data } = await useFetch<responseSearch | responseError | null >(urlSearch, {
+    const { data, error } = await useFetch<responseSearch | responseError | null >(urlSearch, {
         immediate: false,
     });
 
     const mediaSearch = computed(() =>
         data.value && "Search" in data.value ? data.value as responseSearch : undefined
     )
-    const mediaSearchError = computed(() =>
-        data.value && "Error" in data.value ? data.value as responseError : undefined
-    )
+    const mediaSearchError = computed(() => {
+        if(error.value)
+            return {Response: false, Error: "server unavailable"}
+        else
+            return data.value && "Error" in data.value ? data.value as responseError : undefined
+    })
 
     watch(searchTermDebounced, ()=> {
         medias.value = []
@@ -80,6 +83,15 @@
     watch(mediaSearch, ()=> {
         medias.value = mediaSearch.value?.Search ? medias.value.concat(mediaSearch?.value?.Search) : medias.value
         loading.value = false
+    })
+
+    watch(mediaSearchError, ()=> {
+        loading.value = false
+    })
+
+    watch(error, ()=> {
+        if(error !== null)
+            loading.value = false
     })
 
 </script>
