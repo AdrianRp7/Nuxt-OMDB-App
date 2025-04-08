@@ -50,24 +50,27 @@
 </template>
 
 <script lang="ts" setup>
-
-    const form = reactive({
+    const initialForm = {
         email: "",
         saludation: "",
         name: "",
         subject: "",
         message: "",
         accepted: false,
-    });
+    };
 
-    const touched = reactive({
+    const initialTouched = {
         email: false,
         saludation: false,
         name: false,
         subject: false,
         message: false,
         accepted: false,
-    })
+    };
+
+    const form = reactive(Object.assign({},initialForm));
+
+    const touched = reactive(Object.assign({},initialTouched))
 
     const errors = reactive({
         email: computed(() => {
@@ -100,7 +103,7 @@
             return ""
         }),
         message: computed(() => {
-            if (!touched.subject) return ""
+            if (!touched.message) return ""
             if (form.message.trim() === "") return "Message is required."
             if (form.message.trim().length < 1) return "The message couldn't be less than 2 character"
             if (sanitizeHtml(form.message.trim())) return "Remove html tags and Javascript code"
@@ -149,4 +152,11 @@
             }, 2000);
         }
     }
+
+    onActivated(()=> {
+        //Refresh component
+        resultSubmit.value = "";
+        Object.assign(form,initialForm)
+        Object.assign(touched,initialTouched)
+    })
 </script>
