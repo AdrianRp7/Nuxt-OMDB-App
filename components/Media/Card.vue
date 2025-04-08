@@ -6,6 +6,7 @@
 </template>
 
 <script lang="ts" setup>
+    import type {mediaItem} from "~/interfaces/mediaItem"
     const {media} = defineProps<{media: mediaItem}>();
 
     const poster = computed(() => {

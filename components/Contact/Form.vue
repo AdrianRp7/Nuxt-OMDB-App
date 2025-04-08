@@ -4,11 +4,17 @@
             <label for="title" class="label">Title:</label>
             <div class="select w-full cursor-pointer">
                 <select id="salutation" v-model.lazy="form.title" name="salutation" class="input w-full" @blur="touched.title = true" @input="touched.title = false">
-                    <option value="mr">Mr.</option>
-                    <option value="ms">Ms.</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="other">Other</option>
                 </select>
             </div>
             <p class="text-error text-sm mt-1">{{ errors.title }}</p>
+        </div>
+        <div v-if="form.title === 'other'" class="control">
+            <label for="whatTitle" class="label">What is your title?:</label>
+            <input id="whatTitle" v-model.lazy="form.whatTitle" name="whatTitle" type="text" class="input" @blur="touched.whatTitle = true" @input="touched.whatTitle = false">
+            <p class="text-error text-sm mt-1">{{ errors.whatTitle }}</p>
         </div>
         <div class="control">
             <label for="name" class="label">Name:</label>
@@ -16,8 +22,8 @@
             <p class="text-error text-sm mt-1">{{ errors.name }}</p>
         </div>
         <div class="control">
-            <label for="" class="label">Email:</label>
-            <input id="name" v-model.lazy="form.email" name="name" type="email" class="input" @blur="touched.email = true" @input="touched.email = false">
+            <label for="email" class="label">Email:</label>
+            <input id="email" v-model.lazy="form.email" name="email" type="email" class="input" @blur="touched.email = true" @input="touched.email = false">
             <p class="text-error text-sm mt-1">{{ errors.email }}</p>
         </div>
         <div class="control">
@@ -56,12 +62,14 @@
         name: "",
         subject: "",
         message: "",
+        whatTitle: "",
         accepted: false,
     };
 
     const initialTouched = {
         email: false,
         title: false,
+        whatTitle: false,
         name: false,
         subject: false,
         message: false,
@@ -82,6 +90,14 @@
         title: computed(() => {
             if (!touched.title) return ""
             if (form.title === "") return "title is required."
+            return ""
+        }),
+        whatTitle: computed(() => {
+            if (!touched.title) return ""
+            if (form.title === 'other' && form.whatTitle.trim() === "") return "What title is required."
+            if (form.title === 'other' && form.subject.trim().length > 100) return "The What title couldn't be more than 99 character"
+            if (form.title === 'other' && !validateInput(form.name.trim())) return "The What title is not valid"
+            if (form.title === 'other' && sanitizeHtml(form.name.trim())) return "Remove html tags and Javascript code"
             return ""
         }),
         name: computed(() => {
@@ -120,7 +136,7 @@
     const resultSubmit = ref("");
 
     const validateInput = (text:string): boolean => {
-        return /^[A-ZÁÉÍÓÚÑa-záéíóúñ' -]+$/.test(text)
+        return /^[A-ZÁÉÍÓÚÑa-záéíóúñ' -.]+$/.test(text)
     }
 
     const sanitizeHtml = (text:string): boolean => {
@@ -139,7 +155,7 @@
     const validatedForm = (): boolean => {
         return errors.email === "" && errors.title === "" &&
         errors.name === "" && errors.subject === "" &&
-        errors.message === "" && errors.accepted === "";
+        errors.message === "" && errors.accepted === "" && errors.whatTitle === "";
     }
 
     const submitContact = () => {
