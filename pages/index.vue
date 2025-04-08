@@ -29,8 +29,8 @@
     const movies = ref<mediaItem[]>([]);
     const series = ref<mediaItem[]>([]);
 
-    const { data: responseMovies } = await useFetch<responseSearch | responseError | null >(`/api/search/?searchTerm=local&type=movie&page=1`);
-    const { data: responseSeries } = await useFetch<responseSearch | responseError | null >(`/api/search/?searchTerm=local&type=series&page=1`);
+    const { data: responseMovies} = await useFetch<responseSearch | responseError | null >(`/api/search/?searchTerm=local&type=movie&page=1`);
+    const { data: responseSeries} = await useFetch<responseSearch | responseError | null >(`/api/search/?searchTerm=local&type=series&page=1`);
 
     
     movies.value = responseMovies?.value?.Search ?? []

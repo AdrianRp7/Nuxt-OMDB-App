@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-3 justify-center w-96">
         <div class="control">
-            <label for="" class="label">Saludation:</label>
+            <label for="saludation" class="label">Saludation:</label>
             <select id="salutation" v-model.lazy="form.saludation" name="salutation" class="input" @blur="touched.saludation = true" @input="touched.saludation = false">
                 <option value="mr">Mr.</option>
                 <option value="ms">Ms.</option>
@@ -9,29 +9,29 @@
             <p class="text-error text-sm mt-1">{{ errors.saludation }}</p>
         </div>
         <div class="control">
-            <label for="" class="label">Name:</label>
-            <input v-model.lazy="form.name" type="text" class="input" @blur="touched.name = true" @input="touched.name = false">
+            <label for="name" class="label">Name:</label>
+            <input id="name" v-model.lazy="form.name" name="name" type="text" class="input" @blur="touched.name = true" @input="touched.name = false">
             <p class="text-error text-sm mt-1">{{ errors.name }}</p>
         </div>
         <div class="control">
             <label for="" class="label">Email:</label>
-            <input v-model.lazy="form.email" type="email" class="input" @blur="touched.email = true" @input="touched.email = false">
+            <input id="name" v-model.lazy="form.email" name="name" type="email" class="input" @blur="touched.email = true" @input="touched.email = false">
             <p class="text-error text-sm mt-1">{{ errors.email }}</p>
         </div>
         <div class="control">
-            <label for="" class="label">Subject:</label>
-            <input v-model.lazy="form.subject" type="text" class="input" @blur="touched.subject = true" @input="touched.subject = false">
+            <label for="subject" class="label">Subject:</label>
+            <input id="subject" v-model.lazy="form.subject" name="subject" type="text" class="input" @blur="touched.subject = true" @input="touched.subject = false">
             <p class="text-error text-sm mt-1">{{ errors.subject }}</p>
         </div>
         <div class="control">
-            <label for="" class="label">Message:</label>
-            <textarea v-model.lazy="form.message" class="input" @blur="touched.message = true" @input="touched.message = false" />
+            <label for="message" class="label">Message:</label>
+            <textarea id="message" v-model.lazy="form.message" name="message" class="input" @blur="touched.message = true" @input="touched.message = false" />
             <p class="text-error text-sm mt-1">{{ errors.message }}</p>
         </div>
         <div class="control">
             <div class="checkbox flex flex-row gap-2">
-                <input v-model.lazy="form.accepted" type="checkbox" @blur="touched.accepted = true">
-                <label for="" class="label">I accept the terms and conditions of use</label>
+                <input id="accept" v-model.lazy="form.accepted" name="accept" type="checkbox" @blur="touched.accepted = true">
+                <label for="accept" class="label cursor-pointer">I accept the terms and conditions of use</label>
             </div>
             <p class="text-error text-sm mt-1">{{ errors.accepted }}</p>
         </div>
