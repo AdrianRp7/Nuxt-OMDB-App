@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="text-2xl text-primary font-bold text-center mt-5">NuxtOMDb APP</h1>
+        <h1 class="text-2xl text-primary font-bold text-center my-5">NuxtOMDb APP</h1>
         <h3 class="text-xl text-secondary font-bold">
             Featured Movies
         </h3>
