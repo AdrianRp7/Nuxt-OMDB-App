@@ -12,9 +12,9 @@
             <div class="background-primary desktop-bar hidden md:flex flex-col md:flex-row justify-center md:justify-between items-center pt-4 md:pt-0" :class="{'is-active': showMobile}">
                 <nuxt-link to="/" class="text-primary hover:text-accent hidden md:block hover-transition text-2xl cursor-pointer">NuxtOMDb APP</nuxt-link>
                 <div class="flex-basic gap-4">
-                    <nuxt-link to="/movies" class="text-primary hover-transition hover:text-accent text-center text-md">Movies</nuxt-link>
-                    <nuxt-link to="/series" class="text-primary hover-transition hover:text-accent text-center text-md">Series</nuxt-link>
-                    <nuxt-link to="/contact" class="text-primary hover-transition hover:text-accent text-center text-md">Contact</nuxt-link>
+                    <nuxt-link to="/movies" class="text-primary hover-transition hover:text-accent text-center text-md" active-class="!text-accent">Movies</nuxt-link>
+                    <nuxt-link to="/series" class="text-primary hover-transition hover:text-accent text-center text-md" active-class="!text-accent">Series</nuxt-link>
+                    <nuxt-link to="/contact" class="text-primary hover-transition hover:text-accent text-center text-md" active-class="!text-accent">Contact</nuxt-link>
                 </div>
             </div>
         </div>
