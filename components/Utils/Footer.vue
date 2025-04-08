@@ -1,7 +1,7 @@
 <template>
     <footer class="background-primary p-3 box-shadow-footer dark:!shadow-none">
         <div class="main-container">
-            <p class="text-sm text-primary text-center">© 2025 NuxtOMDb - All Rights Reserved.
+            <p class="text-sm text-primary text-center">© {{new Date().getFullYear()}} NuxtOMDb - All Rights Reserved.
             </p>
         </div>
     </footer>
