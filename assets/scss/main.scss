@@ -11,6 +11,10 @@
         &-secondary {
             @apply bg-gray-100 dark:bg-gray-800;
         }
+
+        &-tertiary {
+            @apply bg-gray-200 dark:bg-gray-700;
+        }
     }
     
     .text {
@@ -83,8 +87,6 @@
         @apply flex flex-col gap-1;
     }
 
-
-
     .checkbox {
         appearance: none;
         -webkit-appearance: none;
@@ -100,6 +102,28 @@
             top: -2px;
             left: 4px;
         }
+    }
+
+    .slider {
+        @apply cursor-pointer;
+
+        /* Webkit browsers*/
+        &::-webkit-scrollbar {
+            @apply size-2;
+        }
+        &::-webkit-scrollbar-track {
+            @apply background-tertiary rounded-md;
+        }
+        &::-webkit-scrollbar-thumb {
+            @apply background-primary border-2 rounded-md;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            @apply background-primary;
+        }
+
+        /** Firefox **/
+        scrollbar-width: thin;
+        scrollbar-color: #999 #f4f4f4;
     }
 
     .\[grid-cols-\[max-content_1fr_1fr\]\] {
